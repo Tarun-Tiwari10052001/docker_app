@@ -1,0 +1,32 @@
+pipeline {
+    agent any 
+    environment{
+        IMAGE_NAME = 'ttiwari1005/dockerapp'
+    }
+    stages{
+        stage('checkout code'){
+            steps{
+                git credentialsId: 'git-cred', url: 'https://github.com/Tarun-Tiwari10052001/Microservice.git'
+            }
+        }
+        stage('build docker image'){
+            steps{
+                script{
+                    docker build -t ${IMAGE_NAME}:${BUILD_NUMBER}
+                    sh "final_image= ${IMAGE_NAME}:${BUILD_NUMBER}"
+                }
+            }
+        }
+        stage('docker push'){
+            steps{
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-cred', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                    script{
+                        docker push ttiwari1005
+                }
+
+                }
+            }
+        }
+
+    }
+}

@@ -33,7 +33,7 @@ pipeline {
 
         stage('Run Post-Push Script') {
             steps {
-                sh "./updateimage.sh"
+                sh "./updateimage.sh ${IMAGE_NAME}:${BUILD_NUMBER}"
             }
         }
     }

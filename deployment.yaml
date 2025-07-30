@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: taruncontainer
-        image: ttiwari1005/dockerapp
+        image: ttiwari1005/dockerapp:11
         ports:
         - containerPort: 8080
 

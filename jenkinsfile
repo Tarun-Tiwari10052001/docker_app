@@ -34,7 +34,7 @@ pipeline {
         stage('Update Image in YAML & Push to Git') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'git-cred', usernameVariable: 'GIT_USER', passwordVariable: 'GIT_PASS')]) {
-                    sh '''
+                    sh """
                         chmod +x updateimage.sh
                         ./updateimage.sh ${BUILD_NUMBER}
 
@@ -45,7 +45,7 @@ pipeline {
                         git commit -m "Update image to ${IMAGE_NAME}:${BUILD_NUMBER} [Jenkins auto-push]"
                         git remote set-url origin https://${GIT_USER}:${GIT_PASS}@github.com/Tarun-Tiwari10052001/docker_app.git
                         git push origin HEAD:master
-                    '''
+                    """
                 }
              }
          }

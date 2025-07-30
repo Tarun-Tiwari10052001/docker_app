@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tarunlablel
+  labels:
+    app: tarunlablel
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tarunlablel
+  template:
+    metadata:
+      labels:
+        app: tarunlablel
+    spec:
+      containers:
+      - name: taruncontainer
+        image: ttiwari1005/dockerapp:latest
+        ports:
+        - containerPort: 8080

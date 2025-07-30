@@ -43,7 +43,7 @@ pipeline {
 
                         git add deployment.yaml
                         git commit -m "Update image to ${IMAGE_NAME}:${BUILD_NUMBER} [Jenkins auto-push]"
-                        git push https://${GIT_USER}:${GIT_PASS}@github.com/Tarun-Tiwari10052001/docker_app.git HEAD:master
+                        git push https://Tarun-Tiwari10052001:${GIT_PASS}@github.com/Tarun-Tiwari10052001/docker_app.git HEAD:master
                     '''
                 }
              }

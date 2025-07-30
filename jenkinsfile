@@ -33,6 +33,7 @@ pipeline {
 
         stage('Run Post-Push Script') {
             steps {
+                sh "chmod +x updateimage.sh"
                 sh "./updateimage.sh ${BUILD_NUMBER}"
             }
         }

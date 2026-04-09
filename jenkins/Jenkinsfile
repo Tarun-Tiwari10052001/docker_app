@@ -1,0 +1,24 @@
+// Jenkinsfile - SCRIPTED pipeline (not declarative)
+node {
+
+    // Get branch name
+    def branch = env.BRANCH_NAME
+    echo "Running pipeline for branch: ${branch}"
+
+    // Branch routing
+    if (branch.startsWith('feature')) {
+        load 'jenkins/feature-pipeline.groovy'
+    } 
+    else if (branch == 'dev') {
+        load 'jenkins/dev-pipeline.groovy'
+    } 
+    else if (branch.startsWith('release')) {
+        load 'jenkins/release-pipeline.groovy'
+    } 
+    else if (branch == 'master') {
+        load 'jenkins/prod-pipeline.groovy'
+    } 
+    else {
+        error "Unsupported branch type: ${branch}"
+    }
+}
